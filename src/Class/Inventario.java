@@ -23,12 +23,17 @@ public class Inventario {
     public Inventario() {
         productos = new ArrayList<>();
     }
-
-    // Agregar producto al inventario
+    
+     
+    //Las salidas en consola son solo significativas y de ayuda para la logica del codigo,
+    //posteriormente se hara la relacion entre clases, main y interface
+    // Relación con la clase Producto: agregar producto
     public void agregarProducto(Producto producto) {
         productos.add(producto);
-    }
+        System.out.println("Producto agregado al inventario: " + producto.getNombre());
+    }    
 
+    
     // Buscar producto por código
     public Producto buscarProducto(String codigo) {
         for (Producto p : productos) {

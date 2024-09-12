@@ -15,12 +15,17 @@ public class Venta {
     private List<Producto> listaProductos = new ArrayList<>();
     private double total;
 
-    
+    //constructor
     public Venta(String codigoVenta, Date fecha, Cliente cliente) {
         this.codigoVenta = codigoVenta;
         this.fecha = fecha;
         this.cliente = cliente;
     }
+    
+    // Relación con la clase Producto
+    public void agregarProducto(Producto producto) {
+        listaProductos.add(producto);
+        calcularTotal();
 
     // método sobrecargado para agregar un producto con cantidad
     public void agregarProducto(Producto producto, int cantidad) {
