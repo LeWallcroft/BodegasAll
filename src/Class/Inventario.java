@@ -41,7 +41,11 @@ public class Inventario {
 
     // Mostrar todos los productos en el inventario
     public List<Producto> mostrarInventario() {
-        return productos;
+        
+         System.out.println("Lista de productos en inventario:");
+        for (Producto producto : productos) {
+            System.out.println("Código: " + producto.getCodigo() + ", Nombre: " + producto.getNombre());        
+        
     }
 
     // Eliminar producto del inventario
