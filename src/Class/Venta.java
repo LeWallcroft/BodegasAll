@@ -9,7 +9,7 @@ package Class;
  * @author wallc
  */
 public class Venta {
-     private String codigoVenta;
+   /* private String codigoVenta;
     private Date fecha;
     private Cliente cliente;
     private List<Producto> listaProductos = new ArrayList<>();
@@ -49,5 +49,5 @@ public class Venta {
         return total;
     }
 
-    
+    */
 }

@@ -17,7 +17,7 @@ import java.util.List;
 
 
 public class Inventario {
-    private List<Producto> productos;
+   /* private List<Producto> productos;
 
     // constructor
     public Inventario() {
