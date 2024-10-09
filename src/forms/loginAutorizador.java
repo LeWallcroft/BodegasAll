@@ -24,6 +24,8 @@ public class loginAutorizador extends javax.swing.JFrame {
      */
     public loginAutorizador() {
         initComponents();      
+        setLocationRelativeTo(null);
+        setResizable(false);
                    
         
     }   

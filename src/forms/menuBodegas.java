@@ -4,6 +4,7 @@
  */
 package forms;
 import forms.frm_TerminalVT;
+import forms.frm_prod_inicio;
 /**
  *
  * @author wallc
@@ -15,6 +16,8 @@ public class menuBodegas extends javax.swing.JFrame {
      */
     public menuBodegas() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
@@ -178,7 +181,9 @@ public class menuBodegas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        frm_prod_inicio produccion = new frm_prod_inicio();
+        produccion.setVisible(true);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

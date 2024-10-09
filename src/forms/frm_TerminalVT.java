@@ -15,6 +15,7 @@ public class frm_TerminalVT extends javax.swing.JFrame {
      */
     public frm_TerminalVT() {
         initComponents();
+        setExtendedState(frm_TerminalVT.MAXIMIZED_BOTH);
     }
 
     /**
