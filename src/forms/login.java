@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.sql.DriverManager;
 import Connect.conexionBD;
+import Class.PasswordUtils;
+
 /**
  *
  * @author wallc
@@ -36,6 +38,8 @@ public class login extends javax.swing.JFrame {
      private void autenticarCajero() {
         String idUsuario = jTextField1.getText();
         String password = new String(jPasswordField1.getPassword());
+        String hashedPassword = PasswordUtils.hashedPassword (password);
+        System.out.println("Generated Hash: " + hashedPassword);
 
         // Conectar a la base de datos
         try  {
@@ -44,12 +48,13 @@ public class login extends javax.swing.JFrame {
             String sql = "SELECT * FROM usuarios WHERE codigo_cajero = ? AND clave_cajero = ?";
             PreparedStatement pst = cx.prepareStatement(sql);
             pst.setString(1, idUsuario);
-            pst.setString(2, password);
+            pst.setString(2, hashedPassword);
             
             ResultSet rs = pst.executeQuery();
             
             if (rs.next()) {
                 // Credenciales correctas, abrir el frame del autorizador
+                
                 loginAutorizador autorizadorFrame = new loginAutorizador();
                 autorizadorFrame.setVisible(true);
                 autorizadorFrame.pack();
@@ -137,7 +142,7 @@ public class login extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(102, 102, 102));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("ID User");
+        jLabel2.setText("ID Cajero");
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(102, 102, 102));
@@ -152,8 +157,19 @@ public class login extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 102, 102));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Autorizar");
+        jButton1.setText("Autorización");
+        jButton1.setActionCommand("Autorización");
         jButton1.setName("btnAutorizar"); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton1KeyPressed(evt);
+            }
+        });
 
         jLabel4.setText("I don't have an account");
 
@@ -183,7 +199,7 @@ public class login extends javax.swing.JFrame {
                                 .addComponent(jTextField1)
                                 .addComponent(jLabel3)
                                 .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButton1))
                             .addGroup(LeftLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -223,15 +239,11 @@ public class login extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 315, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 73, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -241,6 +253,14 @@ public class login extends javax.swing.JFrame {
 
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1KeyPressed
 
     /**
      * @param args the command line arguments

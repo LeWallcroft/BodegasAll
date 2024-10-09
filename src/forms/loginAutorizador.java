@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.sql.DriverManager;
 import Connect.conexionBD;
+import Class.PasswordUtils;
 
 /**
  *
@@ -25,10 +26,8 @@ public class loginAutorizador extends javax.swing.JFrame {
         initComponents();      
                    
         
-    }
-    
-    
-    
+    }   
+       
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -170,15 +169,11 @@ public class loginAutorizador extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 315, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 73, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -190,6 +185,7 @@ public class loginAutorizador extends javax.swing.JFrame {
       String codigoAutorizador = jTextField1.getText();
     char[] claveArray = jPasswordField1.getPassword();
     String claveAutorizador = new String(claveArray);
+    String hashedAutorizador = PasswordUtils.hashedPassword(claveAutorizador);
 
     // Obtener la conexión desde tu clase de conexión
     Connection conexion = null;
@@ -204,7 +200,7 @@ public class loginAutorizador extends javax.swing.JFrame {
         String sql = "SELECT * FROM usuarios WHERE codigo_autorizador = ? AND clave_autorizador = ? AND tipo = 'autorizador'";
         pst = conexion.prepareStatement(sql);
         pst.setString(1, codigoAutorizador);
-        pst.setString(2, claveAutorizador);
+        pst.setString(2, hashedAutorizador);
 
         rs = pst.executeQuery();
 

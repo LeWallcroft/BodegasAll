@@ -20,6 +20,7 @@ public class BodegasV10 {
         // TODO code application logic here
         
         login loginForm = new login();
+        loginForm.setVisible(true);
         
     }
     
